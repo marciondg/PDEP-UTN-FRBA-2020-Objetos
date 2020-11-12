@@ -1,6 +1,6 @@
 /*
- * Nombre: Apellido, Nombre <completar>
- * Legajo: 999999-9 <completar>
+ * Nombre: Garozzo, Marcio Nicolas David
+ * Legajo: 168061-4
  * 
  * Puntos de Entrada:
  * 
