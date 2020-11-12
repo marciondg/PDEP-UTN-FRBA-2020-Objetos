@@ -7,7 +7,6 @@ describe "Tests Parcial POO"{
 	const roman = new Usuario(nombre= "JuanRo")
 	const mensajeA = new Mensaje(usuario=marcio, contenido=new Texto(texto="Boca yo quiero la copa"))
 	const chat = new Chat(participantes=[marcio], mensajes=[mensajeA])
-	const chat2 = new Chat(participantes=[], mensajes=[mensajeA])
 	const mensajeB = new Mensaje(usuario=roman, contenido=new Texto(texto="Estoy feli"))
 	const mensajeC = new Mensaje(usuario=marcio, contenido=new Audio(duracion=60))
 test "Se puede saber el espacio que ocupa un chat" {
