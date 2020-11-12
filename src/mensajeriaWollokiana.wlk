@@ -90,6 +90,7 @@
  			self.error("Hay participantes sin espacio suficiente")
  	}
 	method todosConEspacio() = participantes.all({participante=>participante.tieneEspacio()})
+	
  }
  
  
