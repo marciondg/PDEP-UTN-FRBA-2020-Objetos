@@ -10,9 +10,9 @@ import contenidos.*
  * Punto 2: mensaje.enviarA(chat)
  * Punto 3: usuario.buscarTextoEnChats(texto)
  * Punto 4: usuario.mensajesMasPesados()
- * Punto 5a: 
- * Punto 5b: 
- * Punto 5c:  
+ * Punto 5a: usuario.recibirNotificacion(chat,mensaje)
+ * Punto 5b: usuario.leerChat(chat)
+ * Punto 5c: usuario.notificacionesSinLeer
  */
  
  class Mensaje{
@@ -33,7 +33,7 @@ import contenidos.*
  class Usuario{
  	const property nombre
  	const chats = #{}
- 	const notificaciones = []
+ 	const notificacionesPendientes = []
  	var tieneEspacio = true
  	method llenoDeMensajes(){
  		tieneEspacio=false
@@ -41,8 +41,8 @@ import contenidos.*
  	method tieneEspacio() = tieneEspacio
  	
  	method sumarseAChat(chat) {
+ 		chats.add(chat)
  		chat.incorporar(self)
- 		chats.add()
  	}
  	method buscarEnNombre(texto) = nombre.contains(texto)
  	//*****************************************************************************//
@@ -52,19 +52,21 @@ import contenidos.*
  	//*****************************************************************************//
 	method mensajesMasPesados() = chats.map({chat=>chat.elMasPesado()}) // Punto 4. Paso map porque no quiero modificar la coleccion actual.
  	//*****************************************************************************//
+ 	
  	method recibirNotificacion(chat, mensaje){
- 		notificaciones.forEach({notificacion=>) 		 
+ 		notificacionesPendientes.add(new Notificacion(chatOrigen=chat, mensajeNoti=mensaje))		 
  	}
-	method sumarNotificacion(chat) = notificaciones.get(chat)+1
+ 	
 	method leerChat(chat){
-		
+		notificacionesPendientes.removeAllSuchThat({notificacion=>notificacion.chat(chat)}) 
+		// Borrar todas las notificaciones que provengan del chat pasado por parametro. Considero que si se leen, se borran.
 	}
+	method notificacionesSinLeer() = notificacionesPendientes
  }
  
  class Notificacion{
  	const chatOrigen
- 	const mensajesNoti = []
+ 	const mensajeNoti
  	
- 	method agregarNotificacion(mensaje){
- 		mensajesNoti.add(mensaje)
+ 	method chat()=chatOrigen
  }

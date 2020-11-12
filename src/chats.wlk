@@ -6,7 +6,7 @@ import contenidos.*
  	const mensajes = []
  	method recibirMensaje(mensaje){
  		self.restricciones(mensaje)
- 		mensajes.add()
+ 		mensajes.add(mensaje)
  		self.enviarNotificaciones(mensaje)
  	}
  	method restricciones(mensaje){
@@ -22,14 +22,17 @@ import contenidos.*
 			self.error("No se encuentra el emisor del mensaje en el chat")
 	}
 	method todosConEspacio() = participantes.all({participante=>participante.tieneEspacio()})
-	method emisorEnElChat(mensaje) = participantes.find(mensaje.emisor())
+	method emisorEnElChat(mensaje) = participantes.contains(mensaje.emisor())
 	
 	//********************************************************************//
 	method espacio() = mensajes.sum({mensaje=>mensaje.peso()}) // Punto 1
 	//********************************************************************//
 	
 	method incorporar(participante){
-		participantes.add(participante)
+		if(participantes.contains(participante))
+			self.error("El usuario ya se encuentra")
+		else
+			participantes.add(participante)
 	}
 	method buscarTexto(texto) = mensajes.any({mensaje=>mensaje.tieneTexto(texto)})
  

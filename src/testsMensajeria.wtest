@@ -3,11 +3,21 @@ import chats.*
 import contenidos.*
 
 describe "Tests Parcial POO"{
-	const marcio = new Usuario(nombre="Marcio Garozzo", chats=#{chat})
-	const chat = new Chat(participantes=[marcio])
-test "Se " {
+	const marcio = new Usuario(nombre="Marcio Garozzo")
+	const roman = new Usuario(nombre= "JuanRo")
+	const mensajeA = new Mensaje(usuario=marcio, contenido=new Texto(texto="Boca yo quiero la copa"))
+	const chat = new Chat(participantes=[marcio], mensajes=[mensajeA])
+	const chat2 = new Chat(participantes=[], mensajes=[mensajeA])
+	const mensajeB = new Mensaje(usuario=roman, contenido=new Texto(texto="Estoy feli"))
+	const mensajeC = new Mensaje(usuario=marcio, contenido=new Audio(duracion=60))
+test "Se puede saber el espacio que ocupa un chat" {
+	assert.equals(mensajeA.peso(),chat.espacio())
+}
 
-	assert.that(false)
-
+test "Al enviar un mensaje, si no se cumplen las restricciones del chat no se podrá enviar"{
+	assert.throwsExceptionWithMessage("No se encuentra el emisor del mensaje en el chat",{mensajeB.enviarA(chat)})
+}
+test "Un mensaje se puede enviar si se cumplen las restricciones del chat"{
+	mensajeC.enviarA(chat)
 }
 }
