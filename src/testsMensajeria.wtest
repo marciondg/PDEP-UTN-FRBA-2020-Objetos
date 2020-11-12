@@ -1,6 +1,13 @@
+import mensajeriaWollokiana.*
+import chats.*
+import contenidos.*
 
-test "tests" {
+describe "Tests Parcial POO"{
+	const marcio = new Usuario(nombre="Marcio Garozzo", chats=#{chat})
+	const chat = new Chat(participantes=[marcio])
+test "Se " {
 
 	assert.that(false)
 
+}
 }

@@ -33,7 +33,7 @@ import contenidos.*
  class Usuario{
  	const property nombre
  	const chats = #{}
- 	const notificaciones = new Dictionary() //No se si 
+ 	const notificaciones = []
  	var tieneEspacio = true
  	method llenoDeMensajes(){
  		tieneEspacio=false
@@ -53,11 +53,18 @@ import contenidos.*
 	method mensajesMasPesados() = chats.map({chat=>chat.elMasPesado()}) // Punto 4. Paso map porque no quiero modificar la coleccion actual.
  	//*****************************************************************************//
  	method recibirNotificacion(chat, mensaje){
- 		notificaciones.put(chat,mensajes.add(mensaje))
+ 		notificaciones.forEach({notificacion=>) 		 
  	}
 	method sumarNotificacion(chat) = notificaciones.get(chat)+1
 	method leerChat(chat){
-		notificaciones.put(chat,0)
+		
 	}
-	method 
+ }
+ 
+ class Notificacion{
+ 	const chatOrigen
+ 	const mensajesNoti = []
+ 	
+ 	method agregarNotificacion(mensaje){
+ 		mensajesNoti.add(mensaje)
  }
